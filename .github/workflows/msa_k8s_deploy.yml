@@ -55,15 +55,17 @@ jobs:
 
       # image 생성하고 ecr push까지 자동화
       # apigateway, user, product, order
-      - name: debug apigateway files
-        run: |
-          ls -R apigateway
+      # - name: debug apigateway files
+      #   run: |
+      #     ls -R apigateway
       - name: apigateway image build and push docker image to ecr 
         env:
           REGISTRY: 933090817123.dkr.ecr.ap-northeast-2.amazonaws.com
           REPOSITORY: apigateway
           IMAGE_TAG: latest
         run: |
+          cd apigateway
+          ./gradlew bootJar
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -f ./apigateway/Dockerfile ./apigateway
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
       - name: eks kubectl apigateway apply
