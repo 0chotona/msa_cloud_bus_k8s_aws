@@ -8,7 +8,10 @@ on:
 jobs:
   # job name
   deploy-infra:
-
+    # runner
+    runs-on: ubuntu-latest
+    # https://docs.github.com/ko/actions
+    steps:
         # rabbitmq Controller 적용
       - name: deploy rabbitmq
         run: |
