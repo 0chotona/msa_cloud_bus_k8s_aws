@@ -52,6 +52,7 @@ jobs:
         run: |
           kubectl apply -f ./configserver/k8s/config-depl.yml
           kubectl rollout restart deployment config-deployment -n lgcns
+          kubectl rollout status deployment config-deployment -n lgcns
 
       # image 생성하고 ecr push까지 자동화
       # apigateway, user, product, order
